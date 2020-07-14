@@ -15,7 +15,7 @@ https://drive.google.com/drive/folders/1ZJkS0VXSl_grxlaYHkF1nKh8tB2x3ZF0?usp=sha
 - Backend: Django (Python)
 
 ```bash
-pip install -r reqiuirements.txt
+pip install -r requirements.txt
 ```
 
 - Frontend: React (JavaScript)
@@ -33,6 +33,17 @@ yarn
 - Make a '.env' file in the root folder of this project
 - Copy the contents of the '.env.example' file in the '.env' file
 - Fill the credentials inside the single quotes in the '.env' file
+- Third Party Credentials:
+    - Twitter access token
+    - Twitter access token secret
+    - Twitter consumer key
+    - Twitter consumer key secret
+    - Google maps API key
+    - IBM Tone analyzer key
+    - IBM Tone analyzer url
+    - IBM assistant (watson assistant) id
+    - IBM assistant (watson assistant) service id
+- Setup Admin title and header for the website and url for main website (default values are set in .env.example file just copy paste them)
 
 ## Starting the server
 
