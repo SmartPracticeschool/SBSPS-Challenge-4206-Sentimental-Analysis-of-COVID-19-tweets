@@ -1,7 +1,7 @@
 <h1>COVID-19 Analyzer</h1>
 
 <h2>About the Project</h2>
-#### Please visit the link below to to the PPT and a demo video:
+### Please visit the link below to to the PPT and a demo video:
 
 https://drive.google.com/drive/folders/1ZJkS0VXSl_grxlaYHkF1nKh8tB2x3ZF0?usp=sharing
 
