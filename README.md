@@ -55,13 +55,30 @@ yarn
     - IBM assistant (watson assistant) service id
 - Setup Admin title and header for the website and url for main website (default values are set in .env.example file just copy paste them)
 
-## Starting the server
-
+## Before Starting the server
+- Make sure you create a superuser for admin panel
 ```bash
 python manage.py makemigrations
 python manage.py migrate
+python manage.py createsuperuser
+```
+
+## Starting the server
+
+```bash
 python manage.py runserver
 ```
+
+## Before starting React application
+
+- Go to the admin panel at BASE_URL/admin
+- Create Default keywords model in Analysis section
+- Create the following models in the constants section:
+    - Days of trending tweetss
+    - No of popular tweetss
+    - No of trending keywordss
+    - Num of tweets per days
+    - Num of tweets per states
 
 ## Starting the react application
 
