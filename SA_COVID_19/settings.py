@@ -99,14 +99,21 @@ WSGI_APPLICATION = 'SA_COVID_19.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": env("SQL_ENGINE", default="django.db.backends.postgresql"),
+#         "NAME": env("SQL_DATABASE", default="sa_covid_19"),
+#         "USER": env("SQL_USER", default="sa_covid_19"),
+#         "PASSWORD": env("SQL_PASSWORD", default="sa_covid_19"),
+#         "HOST": env("SQL_HOST", default="localhost"),
+#         "PORT": env("SQL_PORT", default=5432),
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": env("SQL_ENGINE", default="django.db.backends.postgresql"),
-        "NAME": env("SQL_DATABASE", default="sa_covid_19"),
-        "USER": env("SQL_USER", default="sa_covid_19"),
-        "PASSWORD": env("SQL_PASSWORD", default="sa_covid_19"),
-        "HOST": env("SQL_HOST", default="localhost"),
-        "PORT": env("SQL_PORT", default=5432),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

@@ -5,6 +5,16 @@
 
 https://drive.google.com/drive/folders/1ZJkS0VXSl_grxlaYHkF1nKh8tB2x3ZF0?usp=sharing
 
+## Note: We had mentioned postgresql in our solution. The default database is sqlite as in case you don't want to setup postgresql. Follow the given steps only if you want to use postgresql, otherwise the default database will be sqlite.
+- Go to SA_COVID_19/settings.py
+- Comment out the database part of sqlite
+- Uncomment the database part above it (of postgresql)
+- On pgAdmin, create:
+    - user with admin rights, with username and password: 'sa_covid_19'
+    - database with name: sa_covid_19
+    - host: localhost
+    - port: 5432
+
 <h2>Project Setup</h2>
 
 - Clone this Repo
