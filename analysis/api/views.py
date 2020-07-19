@@ -56,11 +56,11 @@ class AnaylsisView(ModelViewSet):
     if serializer.is_valid():
       saved_model = serializer.save(create_by_id=user_referred_id)
       default_keywords = DefaultKeyword.objects.all()
-      num_of_tweets_per_default_keyword = NumOfTweetsPerState.objects.get(id=1).value
-      num_of_tweets_per_day = NumOfTweetsPerDay.objects.get(id=1).value
-      days_of_trending_tweets = DaysOfTrendingTweets.objects.get(id=1).value
-      num_of_popular_tweets = NoOfPopularTweets.objects.get(id=1).value
-      num_of_trending_keywords = NoOfTrendingKeywords.objects.get(id=1).value
+      num_of_tweets_per_default_keyword = NumOfTweetsPerState.objects.all()[0].value
+      num_of_tweets_per_day = NumOfTweetsPerDay.objects.all()[0].value
+      days_of_trending_tweets = DaysOfTrendingTweets.objects.all()[0].value
+      num_of_popular_tweets = NoOfPopularTweets.objects.all()[0].value
+      num_of_trending_keywords = NoOfTrendingKeywords.objects.all()[0].value
       or_def_keywords = add_OR_in_strings(default_keywords)
       or_def_keywords1 = or_def_keywords
       or_def_keywords2 = or_def_keywords
@@ -101,7 +101,7 @@ class AnaylsisView(ModelViewSet):
       response[ser_data] = serializer.data[ser_data]
 
     default_keywords = DefaultKeyword.objects.all()
-    days_of_trending_tweets = DaysOfTrendingTweets.objects.get(id=1).value
+    days_of_trending_tweets = DaysOfTrendingTweets.objects.all()[0].value
 
     #sentiment_count_per_state = json.loads(serializer.data['statewise_tweets'])
     sentiment_count_per_state = json.loads(serializer.data['statewise_tweets'])
@@ -130,11 +130,11 @@ class AnaylsisViewHome(RetrieveAPIView):
 
   def retrieve(self, request, *args, **kwargs):
     default_keywords = DefaultKeyword.objects.all()
-    num_of_tweets_per_default_keyword = NumOfTweetsPerState.objects.get(id=1).value
-    days_of_trending_tweets = DaysOfTrendingTweets.objects.get(id=1).value
-    num_of_tweets_per_day = NumOfTweetsPerDay.objects.get(id=1).value
-    num_of_popular_tweets = NoOfPopularTweets.objects.get(id=1).value
-    num_of_trending_keywords = NoOfTrendingKeywords.objects.get(id=1).value
+    num_of_tweets_per_default_keyword = NumOfTweetsPerState.objects.all()[0].value
+    days_of_trending_tweets = DaysOfTrendingTweets.objects.all()[0].value
+    num_of_tweets_per_day = NumOfTweetsPerDay.objects.all()[0].value
+    num_of_popular_tweets = NoOfPopularTweets.objects.all()[0].value
+    num_of_trending_keywords = NoOfTrendingKeywords.objects.all()[0].value
     or_def_keyword = add_OR_in_strings(default_keywords)
 
     sentiment_count_per_state = []
