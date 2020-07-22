@@ -148,7 +148,7 @@ const AnalysisSingle = props => {
         <br />
         <LineChart datewiseTweetTrends={datewiseTweetTrends} />
         <br />
-        {/* <MapContainer statewiseSentiments={mapStatewiseSentiments} /> */}
+        <MapContainer statewiseSentiments={mapStatewiseSentiments} />
       </div>
     </div>
   );
