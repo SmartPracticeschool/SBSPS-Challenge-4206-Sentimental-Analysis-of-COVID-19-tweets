@@ -24,6 +24,7 @@ from ..utils import (
   max_sentiment,
   add_OR_in_strings
 )
+from .permissions import IsOwner
 
 class AnaylsisView(ModelViewSet):
 
@@ -38,9 +39,13 @@ class AnaylsisView(ModelViewSet):
   permission_classes_by_action = {
     'create': [IsAuthenticated],
     'list': [IsAuthenticated],
-    'retrieve': [IsAuthenticated],
-    'destroy': [IsAuthenticated],
+    'retrieve': [IsAuthenticated, IsOwner],
+    'destroy': [IsAuthenticated, IsOwner],
   }
+
+  def get_queryset(self):
+    user = Token.objects.filter(key=self.request.headers['Authorization'].split()[1])[0].user
+    return self.queryset.filter(create_by=user)
 
   def get_serializer_class(self):
     return self.serializer_action_classes[self.action]
@@ -83,12 +88,6 @@ class AnaylsisView(ModelViewSet):
       saved_model.trending_tweets = json.dumps(_trending_tweets)
       saved_model.trending_keywords = json.dumps(_trending_keywords)
       saved_model.save()
-
-  def list(self, request, *args, **kwargs):
-    user_referred_id = Token.objects.filter(key=self.request.headers['Authorization'].split()[1])[0].user.id
-    analysis_model = Analysis.objects.filter(create_by_id=user_referred_id)
-    serializer = self.get_serializer(analysis_model, many=True)
-    return Response(serializer.data)
 
   def retrieve(self, request, pk=None):
     user_referred_id = Token.objects.filter(key=self.request.headers['Authorization'].split()[1])[0].user.id
