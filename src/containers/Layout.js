@@ -12,7 +12,7 @@ const CustomLayout = props => {
     <Layout className="layout">
       <Header>
         <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+        <Menu theme="dark" mode="horizontal">
           {
             props.isAuthenticated ?
               <Menu.Item key="1" onClick={props.logout}>Logout</Menu.Item>
