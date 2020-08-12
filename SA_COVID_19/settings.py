@@ -12,27 +12,25 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import environ
-from dotenv import load_dotenv
 
 env = environ.Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
-dot_env_dir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-load_dotenv(os.path.join(dot_env_dir, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1=s0z#rec)3ef(n7)bj=u30nhwo#yg&57s-$40eib&7tc=p)0l'
+SECRET_KEY = env("SECRET_KEY", default='secret-key-of-at-least-50-characters-to-pass-check-deploy',)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -69,7 +67,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -99,23 +97,24 @@ WSGI_APPLICATION = 'SA_COVID_19.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": env("SQL_ENGINE", default="django.db.backends.postgresql"),
-#         "NAME": env("SQL_DATABASE", default="sa_covid_19"),
-#         "USER": env("SQL_USER", default="sa_covid_19"),
-#         "PASSWORD": env("SQL_PASSWORD", default="sa_covid_19"),
-#         "HOST": env("SQL_HOST", default="localhost"),
-#         "PORT": env("SQL_PORT", default=5432),
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": env("SQL_ENGINE", default="django.db.backends.postgresql"),
+            "NAME": env("SQL_DATABASE", default="sa_covid_19"),
+            "USER": env("SQL_USER", default="sa_covid_19"),
+            "PASSWORD": env("SQL_PASSWORD", default="sa_covid_19"),
+            "HOST": env("SQL_HOST", default="localhost"),
+            "PORT": env.int("SQL_PORT", default=5432),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
