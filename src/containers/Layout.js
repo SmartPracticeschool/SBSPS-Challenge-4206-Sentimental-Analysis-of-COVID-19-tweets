@@ -19,7 +19,7 @@ const CustomLayout = props => {
     }
 
     if (props.isAuthenticated && (props.location.pathname === "/login" || props.location.pathname === "signup")) {
-      props.history.push('/');
+      props.history.push('/analysis');
     } else if (!props.isAuthenticated && (props.location.pathname.split('/')[1] === "analysis")) {
       props.history.push('/login');
     }
