@@ -8,7 +8,7 @@ import * as actions from '../store/actions/auth';
 const Login = props => {
   const onFinish = values => {
     props.onAuth("#", values.email, values.password);
-    props.history.push('/');
+    // props.history.push('/');
   };
 
   let errorMessage = null;
