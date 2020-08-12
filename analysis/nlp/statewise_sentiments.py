@@ -1,12 +1,10 @@
 import tweepy as tw
 import json
 import datetime
-import time 
 from ibm_watson import ToneAnalyzerV3
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from dotenv import load_dotenv
 from os import path, environ
-from time import sleep
 
 base_dir = path.abspath(path.dirname(path.dirname(path.dirname(__file__))))
 load_dotenv(path.join(base_dir, '.env'))
@@ -76,7 +74,6 @@ def state_tweets(num_of_tweets_per_state, default_keyword):
     state_dict = {}
 
     for i, state_index in enumerate(states_and_uts):
-        tweets_list = []
         geocode="%f"%location[i][0]+','+"%f" % location[i][1]+",100km"
         for tweet in tw.Cursor(api.search, q=default_keyword, lang='en', geocode=geocode).items(num_of_tweets_per_state):
             retrieved_tweet = tweet.text
