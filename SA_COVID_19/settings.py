@@ -62,34 +62,9 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
 ROOT_URLCONF = 'SA_COVID_19.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
 WSGI_APPLICATION = 'SA_COVID_19.wsgi.application'
 
@@ -104,6 +79,31 @@ if DEBUG:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
+    MIDDLEWARE = [
+        'corsheaders.middleware.CorsMiddleware',
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ]
 else:
     DATABASES = {
         "default": {
@@ -115,6 +115,36 @@ else:
             "PORT": env.int("SQL_PORT", default=5432),
         }
     }
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [
+                os.path.join(BASE_DIR, 'build')
+            ],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
+    MIDDLEWARE = [
+        'corsheaders.middleware.CorsMiddleware',
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
+    ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -152,6 +182,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build', 'static'),
+]
+
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.

@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 import os
 from django.conf import settings
+from django.views.generic import TemplateView
 
 
 admin.site.site_header = settings.ADMIN_HEADER
@@ -31,4 +32,5 @@ urlpatterns = [
     path('api/analysis/', include('analysis.api.urls')),
     path('api/constants/', include('constants.api.urls')),
     path('api/suggestions/', include('suggestions.api.urls')),
+    path('', TemplateView.as_view(template_name='index.html')),
 ]

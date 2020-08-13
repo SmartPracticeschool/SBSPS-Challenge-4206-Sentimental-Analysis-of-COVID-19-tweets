@@ -8,9 +8,14 @@ django-cors-headers==3.4.0
 django-environ==0.4.5
 django-rest-auth==0.9.5
 djangorestframework==3.11.0
+docutils==0.15.2
 ibm-cloud-sdk-core==1.5.1
+ibm-cos-sdk==2.6.3
+ibm-cos-sdk-core==2.6.3
+ibm-cos-sdk-s3transfer==2.6.3
 ibm-watson==4.5.0
 idna==2.10
+jmespath==0.10.0
 oauthlib==3.1.0
 psycopg2==2.8.5
 psycopg2-binary==2.8.5
@@ -27,6 +32,4 @@ sqlparse==0.3.1
 tweepy==3.8.0
 urllib3==1.25.9
 websocket-client==0.48.0
-ibm-cos-sdk==2.6.3
-ibm-cos-sdk-core==2.6.3
-ibm-cos-sdk-s3transfer==2.6.3
+whitenoise==5.2.0
