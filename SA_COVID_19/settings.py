@@ -220,4 +220,3 @@ AUTHENTICATION_BACKENDS = [
 
 ADMIN_HEADER = env('ADMIN_HEADER', default='COVID-19 Analyzer')
 ADMIN_TITLE = env('ADMIN_TITLE', default='COVID-19 Analyzer')
-WEBSITE_URL = env('WEBSITE_URL', default='http://127.0.0.1:8000')
