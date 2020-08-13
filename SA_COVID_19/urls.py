@@ -15,15 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from dotenv import load_dotenv
 import os
+from django.conf import settings
 
-base_dir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-load_dotenv(os.path.join(base_dir, '.env'))
 
-admin.site.site_header = os.environ.get('ADMIN_HEADER')
-admin.site.site_title = os.environ.get('ADMIN_TITLE')
-admin.site.site_url = os.environ.get('WEBSITE_URL')
+admin.site.site_header = settings.ADMIN_HEADER
+admin.site.site_title = settings.ADMIN_TITLE
+admin.site.site_url = settings.WEBSITE_URL
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
